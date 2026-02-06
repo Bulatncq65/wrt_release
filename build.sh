@@ -54,6 +54,41 @@ remove_uhttpd_dependency() {
     fi
 }
 
+fix_Dev_name_wifi_name() {
+    
+	local WRT_NAME="NSS"       #自定义设备名称
+	local WRT_IP="192.168.1.1" #自定义设备LAN_IP
+	local WRT_SSID="NSS" #自定义WiFi名
+	local WRT_WORD="87654321" #自定义WiFi密码
+
+    cd "$BASE_PATH/$BUILD_DIR"
+    local CFG_FILE="./package/base-files/files/bin/config_generate"
+    local WIFI_SH=$(find ./target/linux/{mediatek/filogic,qualcommax}/base-files/etc/uci-defaults/ -type f -name "*set-wireless.sh" 2>/dev/null)
+    local WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
+if [ -f "$WIFI_SH" ]; then
+	#修改WIFI名称
+	sed -i "s/BASE_SSID='.*'/BASE_SSID='$WRT_SSID'/g" $WIFI_SH
+	#修改WIFI密码
+	sed -i "s/BASE_WORD='.*'/BASE_WORD='$WRT_WORD'/g" $WIFI_SH
+elif [ -f "$WIFI_UC" ]; then
+	#修改WIFI名称
+	sed -i "s/ssid='.*'/ssid='$WRT_SSID'/g" $WIFI_UC
+	#修改WIFI密码
+	sed -i "s/key='.*'/key='$WRT_WORD'/g" $WIFI_UC
+	#修改WIFI地区
+#	sed -i "s/country='.*'/country='CN'/g" $WIFI_UC
+	#修改WIFI加密
+	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC
+fi
+
+
+#修改默认IP地址
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
+#修改默认主机名
+sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
+
+}
+
 # 应用配置文件
 apply_config() {
     # 复制基础配置文件
@@ -90,6 +125,7 @@ $BASE_PATH/update.sh "$REPO_URL" "$REPO_BRANCH" "$BASE_PATH/$BUILD_DIR" "$COMMIT
 
 apply_config
 remove_uhttpd_dependency
+fix_Dev_name_wifi_name
 
 cd "$BASE_PATH/$BUILD_DIR"
 make defconfig
