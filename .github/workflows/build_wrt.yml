@@ -10,26 +10,26 @@ on:
         type: choice
         default: jdcloud_ipq60xx_libwrt
         options:
-          - aliyun_ap8220_immwrt.ini
-          - aliyun_ap8220_libwrt.ini
-          - aliyun_ap8220_libwrt_nowifi.ini
-          - cmcc_rax3000m_immwrt.ini
-          - gemtek_w1701k_immwrt.ini
-          - jdcloud_ax6000_immwrt.ini
-          - jdcloud_ipq60xx_immwrt.ini
-          - jdcloud_ipq60xx_libwrt.ini
-          - jdcloud_ipq60xx_libwrt_nowifi.ini
-          - linksys_mx4x00_immwrt.ini
-          - n1_immwrt.ini
-          - qihoo_360v6_immwrt.ini
-          - redmi_ax5_immwrt.ini
-          - redmi_ax6_immwrt.ini
-          - redmi_ax6_libwrt.ini
-          - redmi_ax6000_immwrt21.ini
-          - x64_immwrt.ini
-          - zn_m2_immwrt.ini
-          - zn_m2_libwrt.ini
-          - zn_m2_libwrt_nowifi.ini
+          - aliyun_ap8220_immwrt
+          - aliyun_ap8220_libwrt
+          - aliyun_ap8220_libwrt_nowifi
+          - cmcc_rax3000m_immwrt
+          - gemtek_w1701k_immwrt
+          - jdcloud_ax6000_immwrt
+          - jdcloud_ipq60xx_immwrt
+          - jdcloud_ipq60xx_libwrt
+          - jdcloud_ipq60xx_libwrt_nowifi
+          - linksys_mx4x00_immwrt
+          - n1_immwrt
+          - qihoo_360v6_immwrt
+          - redmi_ax5_immwrt
+          - redmi_ax6_immwrt
+          - redmi_ax6_libwrt
+          - redmi_ax6000_immwrt21
+          - x64_immwrt
+          - zn_m2_immwrt
+          - zn_m2_libwrt
+          - zn_m2_libwrt_nowifi
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
