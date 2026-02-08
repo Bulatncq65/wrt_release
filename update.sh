@@ -182,9 +182,9 @@ remove_unwanted_packages() {
         \rm -rf ./package/istore
     fi
 	
-    if [[ -d ./feeds/luci/protocols/luci-proto-minieap ]]; then
-        \rm -rf ./feeds/luci/protocols/luci-proto-minieap
-    fi
+#    if [[ -d ./feeds/luci/protocols/luci-proto-minieap ]]; then
+#        \rm -rf ./feeds/luci/protocols/luci-proto-minieap
+#    fi
 
 
     # ipq60xx不支持NSS offload mnet_rx
@@ -218,7 +218,7 @@ install_small8() {
         luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest netdata luci-app-netdata \
         lucky luci-app-lucky luci-app-openclash luci-app-homeproxy luci-app-amlogic nikki luci-app-nikki \
         tailscale luci-app-tailscale oaf open-app-filter luci-app-oaf easytier luci-app-easytier \
-        msd_lite luci-app-msd_lite cups luci-app-cupsd luci-app-momo momo luci-app-partexp luci-app-minieap luci-proto-minieap openwrt-minieap \
+        msd_lite luci-app-msd_lite cups luci-app-cupsd luci-app-momo momo luci-app-partexp openwrt-minieap luci-app-minieap \
         homebox netspeedtest speedtest-cli luci-app-netspeedtest luci-app-timewol luci-app-control-timewol luci-app-wolplus
 }
 
