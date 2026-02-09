@@ -128,7 +128,7 @@ sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
 	reg = <0x0 0x4ab00000 0x0 0x1000000>;
 };' > $IPQ6018
 
-find $DTS_PATH -type f ! -iname '*-512m*' ! -iname '*nowifi*' -exec sed -i '/-\(cpu\|ess\|nss\|common\|cpr-regulator\)\.dtsi"/b; /"ipq\(6018\|8074\)[^"]*\.dtsi"$/s/\(ipq\(6018\|8074\)\)[^"]*\.dtsi"/\1-nowifi.dtsi"/' {} +
+find $DTS_PATH -type f ! -iname '*-512m*' ! -iname '*nowifi*' -exec sed -i 's/\("ipq\(6018\|8074\)\)\(-512m\)\?\.dtsi"/\1-nowifi.dtsi"/' {} +
 #find $DTS_PATH -type f ! -iname '*nowifi*' -exec sed -i '/ipq\(6018\|8074\)/{ /-\(cpu\|ess\|nss\|cpr-regulator\|common\)\.dtsi$!/{ s/\(ipq\(6018\|8074\)\).*\.dtsi/\1-nowifi.dtsi/g } }' {} +
 
     echo "qualcommax set up nowifi successfully!"
