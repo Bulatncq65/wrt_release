@@ -126,7 +126,26 @@ sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
 
 &q6_region {
 	reg = <0x0 0x4ab00000 0x0 0x1000000>;
+};
+
+&q6_etr_region {
+	reg = <0x0 0x4bb00000 0x0 0x100000>;
+};
+
+&m3_dump_region {
+	reg = <0x0 0x4bc00000 0x0 0x100000>;
+};
+
+&ramoops_region {
+	reg = <0x0 0x4bd00000 0x0 0x100000>;
 };' > $IPQ6018
+#    echo  '// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+#
+##include "ipq6018.dtsi"
+#
+#&q6_region {
+#	reg = <0x0 0x4ab00000 0x0 0x1000000>;
+#};' > $IPQ6018
 
 find $DTS_PATH -type f ! -iname '*-512m*' ! -iname '*nowifi*' -exec sed -i 's/\("ipq\(6018\|8074\)\)\(-512m\)\?\.dtsi"/\1-nowifi.dtsi"/' {} +
 #find $DTS_PATH -type f ! -iname '*nowifi*' -exec sed -i '/ipq\(6018\|8074\)/{ /-\(cpu\|ess\|nss\|cpr-regulator\|common\)\.dtsi$!/{ s/\(ipq\(6018\|8074\)\).*\.dtsi/\1-nowifi.dtsi/g } }' {} +
